@@ -53,4 +53,4 @@ group :development, :test do
 end
 
 gem 'bootstrap-sass'
-
+gem 'devise' # a flexible authentication solution for Rails based on Warden
