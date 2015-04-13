@@ -15,7 +15,7 @@ class PostsController < ApplicationController
   end
 
     def create
-      @post = Post.new(params.require(:post).permit(:title, :body))
+      @post = current_user.posts.build(params.require(:post).permit(:title, :body))
       if @post.save # Active Record method that updates db with our @post object
         flash[:notice] = "Post was saved."
         redirect_to @post
