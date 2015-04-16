@@ -55,3 +55,4 @@ end
 gem 'bootstrap-sass'
 gem 'devise' # a flexible authentication solution for Rails based on Warden
 gem 'figaro', '1.0'
+gem 'pundit'
