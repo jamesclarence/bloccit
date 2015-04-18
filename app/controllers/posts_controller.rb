@@ -1,10 +1,7 @@
 class PostsController < ApplicationController
-  def index
-    @posts = Post.all
-      authorize @posts
-  end
 
   def show
+    @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:id])
   end
 
@@ -12,13 +9,17 @@ class PostsController < ApplicationController
 # the empty instance of Post is presented to the user on the app/views/posts/new.html.erb
 # new is associated with the HTTP GET action. It's just getting and displaying some data
   def new
+    @topic = Topic.find(params[:topic_id])
     @post = Post.new
     authorize @post
   end
 
     def create
+      @topic = Topic.find(params[:topic_id])
       @post = current_user.posts.build(params.require(:post).permit(:title, :body))
-        authorize @post
+      @post.topic = @topic
+      authorize @post
+
       if @post.save # Active Record method that updates db with our @post object
         flash[:notice] = "Post was saved."
         redirect_to @post
@@ -29,13 +30,16 @@ class PostsController < ApplicationController
     end
 
   def edit
+    @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:id])
       authorize @post
   end
 
     def update
+      @topic = Topic.find(params[:topic_id])
       @post = Post.find(params[:id])
-        authorize @post
+      authorize @post
+      
       if @post.update_attributes(params.require(:post).permit(:title, :body))
         flash[:notice] = "Post was updated."
         redirect_to @post
