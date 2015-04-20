@@ -22,7 +22,7 @@ class PostsController < ApplicationController
 
       if @post.save # Active Record method that updates db with our @post object
         flash[:notice] = "Post was saved."
-        redirect_to @post
+        redirect_to [@topic, @post]
       else
         flash[:error] = "There was an error saving the post. Please try again."
         render :new
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   def edit
     @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:id])
-      authorize @post
+    authorize @post
   end
 
     def update
