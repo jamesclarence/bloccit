@@ -13,4 +13,17 @@
 			<%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
 		<% end %>
 	</div>
+	<div class="col-md-8">
+		<p><%= markdown_to_html @post.body %></p>
+	</div>
+</div>
+
+</br>
+
+<div class="row">
+	<h3>Comments</h3>
+	<div class='col-md-12'>
+		<%= render @comments %>
+		<%= render 'comments/form', topic: @topic, comment: @comment, post: @post %>
+	</div>
 </div>
