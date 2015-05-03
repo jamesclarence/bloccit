@@ -41,4 +41,14 @@ class TopicsController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    Topic.find(params[:id])
+    authorize @topic
+
+    if @topic.destroy
+      flash[:notice] = "\"#{@topic.name}\" was deleted successfully."
+    else
+      flash[:error] = "Sorry, error deleting the topic."
+  end
 end
