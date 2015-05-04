@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
 
   has_many :posts 
   has_many :comments
-  has_many :posts
   mount_uploader :avatar, AvatarUploader
 
   def admin?

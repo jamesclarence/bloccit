@@ -32,10 +32,10 @@ topics = Topic.all
 # Create Posts
 50.times do
  Post.create!(
-    user: users.sample,
-      topic: topics.sample,
-   title:  Faker::Lorem.sentence,
-   body:   Faker::Lorem.paragraph
+  user: users.sample,
+  topic: topics.sample,
+  title:  Faker::Lorem.sentence,
+  body:   Faker::Lorem.paragraph
  )
 end
 posts = Post.all
@@ -43,8 +43,8 @@ posts = Post.all
 # Create Comments
 100.times do
  Comment.create!(
-   user: users.sample,
    post: posts.sample,
+   user: users.sample,
    body: Faker::Lorem.paragraph
  )
 end
