@@ -17,6 +17,8 @@ class Post < ActiveRecord::Base
     votes.sum(:value)
   end
 
+  after_create :create_vote 
+
   def update_rank
     age_in_days = (created_at - Time.new(1970,1,1)) / (60 * 60 * 24) # 1 day in seconds
     new_rank = points + age_in_days
@@ -30,4 +32,10 @@ class Post < ActiveRecord::Base
   validates :body, length: { minimum: 20 }, presence: true
 #  validates :topic, presence: true
 #  validates :user, presence: true
+
+  private
+
+  def create_vote
+    user.votes.create(value: 1, post: self)
+  end
 end
