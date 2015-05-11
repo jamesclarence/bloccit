@@ -20,6 +20,7 @@ class PostsController < ApplicationController
     authorize @post
 
     if @post.save # Active Record method that updates db with our @post object
+      @post.create_vote
       flash[:notice] = "Post was saved."
       redirect_to [@topic, @post]
     else
