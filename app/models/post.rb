@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
   belongs_to :topic
   mount_uploader :image, ImageUploader
   has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   def up_votes
     votes.where(value: 1).count
