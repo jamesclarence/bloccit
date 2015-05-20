@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  resources :users, only: [:update]
+  resources :users, only: [:update, :show]
     
   resources :topics do
     resources :posts, except: [:index]
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       resources :favorites, only: [:create, :destroy]
 
       post '/up-vote' => 'votes#up_vote', as: :up_vote
-      post '/down-vote' => 'votes#down-vote', as: :down_vote
+      post '/down-vote' => 'votes#down_vote', as: :down_vote
   end
 
 
