@@ -1,6 +1,6 @@
 </br>
 <h5>Add a comment:</h5>
-<%= form_for [post, comment] do |f| %>
+<%= form_for [@post, @post.comments.build], remote: true do |f| %>
 		<%= f.label :body %>
 		<%= f.text_field :body %>
 		<%= f.submit %>
